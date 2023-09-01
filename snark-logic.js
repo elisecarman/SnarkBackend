@@ -61,6 +61,13 @@ const initializeGame = (sio, socket) => {
     gameSocket.on('exit', exit)
 
     gameSocket.on('repeat shuffled', repeatShuffled)
+    
+    gameSocket.on('hi', hi)
+}
+
+function hi(data){
+    console.log('hi');
+    io.sockets.in(data.gameId).emit('hi', data);
 }
 
 function repeatShuffled(data){
@@ -147,7 +154,7 @@ function playerJoinsGame(idData) {
         idData.mySocketId = sock.id;
         sock.join(idData.gameId);
         trueGames.push(idData.gameId);
-        
+
         this.emit('new player', idData);
         // io.sockets.in(idData.gameId).emit('new player', idData);
         console.log("new players: " + idData.userName)
