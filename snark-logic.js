@@ -140,13 +140,17 @@ function playerJoinsGame(idData) {
     console.log(idData.gameId);
     console.log(sock.id);
     console.log(sock.rooms);
+    console.log(":D");
 
     if (room.size < 7) {
 
         idData.mySocketId = sock.id;
         sock.join(idData.gameId);
         trueGames.push(idData.gameId);
-        io.sockets.in(idData.gameId).emit('new player', idData);
+        
+        this.emit('new player', idData);
+        // io.sockets.in(idData.gameId).emit('new player', idData);
+        console.log("new players: " + idData.userName)
 
     } else {
         this.emit('status', 
