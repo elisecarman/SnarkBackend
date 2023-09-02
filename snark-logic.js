@@ -67,7 +67,7 @@ const initializeGame = (sio, socket) => {
 
 function hi(data){
     console.log('hi');
-    io.sockets.in(data.gameId).emit('hi', data);
+    io.sockets.in(data).emit('hi', data);
 }
 
 function repeatShuffled(data){
