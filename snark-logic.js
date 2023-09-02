@@ -155,8 +155,8 @@ function playerJoinsGame(idData) {
         sock.join(idData.gameId);
         trueGames.push(idData.gameId);
 
-        this.emit('new player', idData);
-        // io.sockets.in(idData.gameId).emit('new player', idData);
+        // this.emit('new player', idData);
+        io.sockets.in(idData.gameId).emit('new player', idData);
         console.log("new players: " + idData.userName)
 
     } else {
